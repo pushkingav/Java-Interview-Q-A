@@ -12,13 +12,13 @@ import java.util.*;
 
 Пример строки: String s = «сапог сарай арбуз болт бокс биржа»
 
-Отсортированная строка: [б=[биржа, бокс, болт], c=[caпог, сарай]]
+Отсортированная строка: [б=[биржа, бокс, болт], c=[сапог, сарай]]
 
 Ответ присылайте ссылкой на опубликованный приватный Gist. Комментарии и тесты приветствуются.
 *
 * */
 public class StringToMapResolver {
-    Comparator<String> customStringComparator =
+    private final Comparator<String> customStringComparator =
             Comparator.comparingInt(String::length).reversed().thenComparing(s -> s);
 
     public String compute(String input) {
