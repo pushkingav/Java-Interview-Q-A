@@ -20,7 +20,7 @@ class StringToMapResolverTest {
 
     @Test
     void compute() {
-        String output = resolver.compute("сапог сарай арбуз болт бокс биржа");
+        String output = resolver.composeResult("сапог сарай арбуз болт бокс биржа");
         assertEquals("[б=[биржа, бокс, болт], с=[сапог, сарай]]", output);
     }
 }

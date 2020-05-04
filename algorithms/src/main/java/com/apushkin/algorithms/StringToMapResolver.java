@@ -21,9 +21,8 @@ public class StringToMapResolver {
     private final Comparator<String> customStringComparator =
             Comparator.comparingInt(String::length).reversed().thenComparing(s -> s);
 
-    public String compute(String input) {
+    Map<Character, List<String>> createTemporaryMap(String input) {
         String[] words = input.split(" ");
-
         Map<Character, List<String>> groups = new TreeMap<>();
         for (String word : words) {
             Character startingChar = word.charAt(0);
@@ -31,6 +30,11 @@ public class StringToMapResolver {
             list.add(word);
             groups.putIfAbsent(word.charAt(0), list);
         }
+        return groups;
+    }
+
+    public String composeResult(String input) {
+        Map<Character, List<String>> groups = createTemporaryMap(input);
 
         StringBuilder sb = new StringBuilder("[");
         for (Iterator<Map.Entry<Character, List<String>>> iterator = groups.entrySet().iterator(); iterator.hasNext(); ) {
@@ -51,9 +55,7 @@ public class StringToMapResolver {
         return sb.toString();
     }
 
-    public static void main(String[] args) {
-        StringToMapResolver resolver = new StringToMapResolver();
-        System.out.println(resolver.compute("сапог сарай сарай сыр арбуз болт бокс биржа"));
+    public Comparator<String> getCustomStringComparator() {
+        return customStringComparator;
     }
-
 }
